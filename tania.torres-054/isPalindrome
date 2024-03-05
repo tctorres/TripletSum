@@ -1,0 +1,23 @@
+public class Challenge54 {
+    public static boolean isPalindrome(String phrase){
+        phrase = phrase.toLowerCase().replaceAll("[^\\p{Alnum}]", "");
+        for(int i = 0; i < phrase.length() / 2; i++){
+            if(phrase.charAt(i) != phrase.charAt(phrase.length()-i-1)){
+                System.out.println("false");
+                return false;
+            }
+        }
+        return true;
+    }
+    public static void main(String[] args){
+        String phrase1 = "Able was I, ere I saw Elba";
+        String phrase2 = "Hello, World!";
+        if(isPalindrome(phrase1)){
+            System.out.println("true");
+        }
+        if (isPalindrome(phrase2)){
+            System.out.println("true");
+        }
+
+    }
+}
