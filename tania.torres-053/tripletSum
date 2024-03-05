@@ -1,0 +1,44 @@
+import java.util.*;
+
+public class Challenge53 {
+    public List<List<Integer>> tripletSum(int[] nums) {
+        Arrays.sort(nums);
+        Set<List<Integer>> result = new HashSet<>();
+        for (int i = 0; i < nums.length - 2; i++) {
+            int a = i + 1;
+            int b = nums.length - 1;
+
+            while (a < b) {
+                int sum = nums[i] + nums[a] + nums[b];
+
+                if (sum == 0) {
+                    result.add(Arrays.asList(nums[i], nums[a], nums[b]));
+                    a++;
+                    b--;
+                } else if (sum < 0) {
+                    a++;
+                } else {
+                    b--;
+                }
+            }
+        }
+
+        return new ArrayList<>(result);
+    }
+
+    public static void main(String[] args) {
+        int[] arr1 = {-1,0,1,2,-1,-4};
+        Challenge53 result = new Challenge53();
+        List<List<Integer>> triplets = result.tripletSum(arr1);
+        for (List<Integer> triplet : triplets) {
+            System.out.println(triplet);
+        }
+        System.out.println();
+
+        int[] arr2 = {-1,2,1,2,-1,-4};
+        List<List<Integer>> triplets2 = result.tripletSum(arr2);
+        for (List<Integer> triplet : triplets2) {
+            System.out.println(triplet);
+        }
+    }
+}
