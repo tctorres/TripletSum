@@ -1,0 +1,34 @@
+import java.util.HashMap;
+import java.util.Map;
+
+public class TwoSum {
+    private Map<Integer, Integer> indexes;
+
+    public TwoSum() {
+        indexes = new HashMap<>();
+    }
+    public void add(int[] nums) {
+        for (int a = 0; a < nums.length; a++) {
+            for (int b = a + 1; b < nums.length; b++) {
+                int sum = nums[a]+nums[b];
+                indexes.put(sum, (a + 1)*10 + (b + 1));
+            }
+        }
+    }
+    public int[] find(int inputValue) {
+        if (indexes.containsKey(inputValue)) { //true if this map contains a mapping for the specified key
+            int index = indexes.get(inputValue);
+            int index1 = index / 10;
+            int index2 = index % 10;
+            return new int[]{index1, index2};
+        }
+        return null;
+    }
+    public static void main(String[] args) {
+        TwoSum twoSum = new TwoSum();
+        int[] array = {2, 7, 11, 15};
+        twoSum.add(array);
+        int[] result = twoSum.find(9);
+        System.out.println("index1 = " + result[0] + ", index2 = " + result[1]);
+    }
+}
